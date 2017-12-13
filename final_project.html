@@ -1,0 +1,398 @@
+<!doctype html>
+<html>
+    <head>
+        <title></title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+
+    <title>Order Processing Service</title>
+    <link rel="stylesheet" href="css/style_dashboard.css">
+    <link rel="stylesheet" href="css/login_order.css">
+    </head>
+    <body>
+
+    <div id="login_content">
+        <form class="my_form">
+            <h1> Please select one: </h1>
+            <div id="radio_opt">
+                <input type="radio" id="u_manager" name="user" class="user">
+                <label for="u_manager">Manager</label>
+                <br/><br/>
+
+                <input type="radio" id="u_handler" name="user" class="user">
+                <label for="u_handler">Order Handler</label>
+                <br/><br/>
+
+                <input type="radio" id="u_employee" name="user" class="user">
+                <label for="u_employee">Employee</label>
+                <br/>
+                <br/>
+            </div>
+
+            <input type="button" id="submit_btn" value="Submit" class="btn">
+        </form>
+    </div>
+
+      <div class="modal fade" id="loginOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Login</h5>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <div class="input-group" style="margin-bottom:5%;">
+                    <span class="input-group-addon" id="email">@</span>
+                    <input id="u_email" type="text" class="form-control" placeholder="Email Address" aria-describedby="basic-addon1">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class="text-center">
+                    <label for="exampleInputPassword1">Password</label>
+                  </div>
+                  <div class="input-group">
+                    <span class="input-group-addon"> <i class="fa fa-key" aria-hidden="true"></i> </span>
+                    <input type="password" class="form-control" id="u_password" placeholder="Password" name="password">
+                  </div>
+                </div>
+                
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button id="Login-Order-close-btn" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button id="Login-Order-btn" type="button" class="btn btn-primary">Login</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="EmployloginOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Login</h5>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <div class="input-group" style="margin-bottom:5%;">
+                    <span class="input-group-addon" id="email">@</span>
+                    <input id="employ-login-order-email" type="text" class="form-control" placeholder="Email Address" aria-describedby="basic-addon1">
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="Employ-Login-Order-close-btn" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button id="Employ-Login-Order-btn" type="button" class="btn btn-primary">Login</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+    <div id="dashboard_content">
+
+      <div>
+        <label id="loggedin_user_email"></label>
+      </div>
+
+      <div>
+        <button style="float:right" class="user-logout-btn btn btn-delete-order" id="user-logout-tag">Logout</button>
+      </div>
+
+      <div class="jumbotron jumbotron-dashboard">
+        <div class="text-center">
+          <h1 class="title-dashboard"> Order Services Dashboard </h1>
+        </div>
+        <div class="text-center dashboard-opt">
+          <button id="Requested-Orders" href="#!requested-order-data" class="btn btn-outline-success btn-requested-order" type="submit" name="action"> Requested Orders </button>
+          <button id="Approved-Orders" href="#!approved-order-data" class="btn btn-outline-success btn-approved-order" type="submit" name="action"> Approved Orders </button>
+          <button id="Placed-Orders" href="#!placed-order-data" class="btn btn-outline-success btn-placed-order" type="submit" name="action"> Placed Orders </button>
+
+          <button id="Request-Order" class="btn btn-outline-dark btn-request-order" type="submit" name="action" data-toggle="modal" data-target="#requestOrder"> Request Order </button>
+
+          <button id="Delete-Order-request" href="#!delete-order-request"  class="btn btn-outline-danger  btn-delete-order-request" type="submit" name="action"> Delete Order Request </button>
+          <button id="Approve-Order-request" href="#!approve-order-request"  class="btn btn-outline-primary  btn-approve-order-request" type="submit" name="action"> Approve Order Request </button>
+          <button id="Place-Order-request" href="#!place-order-request"  class="btn btn-outline-primary  btn-place-order-request" type="submit" name="action"> Place Order Request </button>
+        </div>
+      </div>
+
+      <div class="modal fade" id="requestOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Place Order</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <div class="input-group" style="margin-bottom:5%;">
+                    <span class="input-group-addon" id="email">@</span>
+                    <input id="place-order-email" type="text" class="form-control" placeholder="Email Address" aria-describedby="basic-addon1" readonly>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group" style="margin-bottom:10px;">
+                    <span class="input-group-addon" id="itemName"><i class="fa fa-book" aria-hidden="true"></i></span>
+                    <input  id="place-order-item-name" type="text" class="form-control" placeholder="Item Name" aria-describedby="basic-addon1">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group" style="margin-bottom:10px;">
+                    <span class="input-group-addon" id="quantity">#</span>
+                    <input id="place-order-quantity"  type="number" class="form-control" placeholder="Quantity" aria-describedby="basic-addon1">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group" style="margin-bottom:10px;">
+                    <span class="input-group-addon" id="cost">#</span>
+                    <input  id="place-order-cost" type="number" class="form-control" placeholder="Cost" aria-describedby="basic-addon1">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="reason">Reason:</label>
+                  <textarea class="form-control" id="place-order-reason" rows="3" placeholder="I need this because..."></textarea>
+                </div>
+                <div class="form-group">
+                  <label id="place-order-error"  style="display: none; color: red;">Error: Please, Enter Correct Input!</label>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button id="Placing-Order-btn" type="button" class="btn btn-primary">Place Order</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-pane order-table" id="requested-order-data" style="display: none;" >
+         <table id="requested-order-table" class="display"
+           width="100%" style="text-align: center;"></table>
+      </div>
+
+      <div class="tab-pane order-table" id="approved-order-data" style="display: none;" >
+         <table id="approved-order-table" class="display"
+           width="100%" style="text-align: center;"></table>
+      </div>
+
+      <div class="tab-pane order-table" id="placed-order-data" style="display: none;" >
+         <table id="placed-order-table" class="display"
+           width="100%" style="text-align: center;"></table>
+      </div>
+
+      <div class="tab-pane order-table" id="delete-order-request-data" style="display: none;" >
+         <table id="delete-order-request-table" class="display"
+           width="100%" style="text-align: center;"></table>
+      </div>
+
+      <div class="tab-pane order-table" id="approve-order-request-data" style="display: none;" >
+         <table id="approve-order-request-table" class="display"
+           width="100%" style="text-align: center;"></table>
+      </div>
+
+      <div class="tab-pane order-table" id="place-order-request-data" style="display: none;" >
+         <table id="place-order-request-table" class="display"
+           width="100%" style="text-align: center;"></table>
+      </div>
+
+
+
+
+<div class="modal fade" id="DeleteOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="DeleteOrderlLabel">Delete Order</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <div class="input-group" style="margin-bottom:5%;">
+                    <span class="input-group-addon" id="delete-order-email">@-Email-ID</span>
+                    <input id="delete-order-email-data" type="text" class="form-control" placeholder="Email Address" aria-describedby="basic-addon1" readonly>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group" style="margin-bottom:10px;">
+                    <span class="input-group-addon" id="delete-order-itemName"><i class="fa fa-book" aria-hidden="true"></i>-Item</span>
+                    <input id="delete-order-itemName-data"  type="text" class="form-control" placeholder="Item Name" aria-describedby="basic-addon1"  readonly>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group" style="margin-bottom:10px;">
+                    <span class="input-group-addon" id="delele-order-quantity">#-Quantity</span>
+                    <input id="delete-order-quantity-data"   type="text" class="form-control" placeholder="Quantity" aria-describedby="basic-addon1" readonly>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group" style="margin-bottom:10px;">
+                    <span class="input-group-addon" id="delete-order-cost">$-Cost</span>
+                    <input id="delete-order-cost-data"  type="text" class="form-control" placeholder="Cost" aria-describedby="basic-addon1" readonly>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="reason">Reason:</label>
+                  <textarea class="form-control" id="delete-order-reason-data" rows="3" placeholder="I need this because..."  readonly></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button id="delete-order-submit" type="button" class="btn btn-primary">Delete Order</button>
+            </div>
+          </div>
+        </div>
+</div>
+
+<div class="modal fade" id="ApproveOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="ApproveOrderlLabel">Approve Order</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <div class="input-group" style="margin-bottom:5%;">
+                    <span class="input-group-addon" id="approve-order-email">@-Email-ID</span>
+                    <input id="approve-order-email-data" type="text" class="form-control" placeholder="Email Address" aria-describedby="basic-addon1" readonly>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group" style="margin-bottom:10px;">
+                    <span class="input-group-addon" id="approve-order-itemName"><i class="fa fa-book" aria-hidden="true"></i>-Item</span>
+                    <input id="approve-order-itemName-data"  type="text" class="form-control" placeholder="Item Name" aria-describedby="basic-addon1"  readonly>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group" style="margin-bottom:10px;">
+                    <span class="input-group-addon" id="approve-order-quantity">#-Quantity</span>
+                    <input id="approve-order-quantity-data"   type="text" class="form-control" placeholder="Quantity" aria-describedby="basic-addon1" readonly>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group" style="margin-bottom:10px;">
+                    <span class="input-group-addon" id="approve-order-cost">$-Cost</span>
+                    <input id="approve-order-cost-data"  type="text" class="form-control" placeholder="Cost" aria-describedby="basic-addon1" readonly>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="reason">Reason:</label>
+                  <textarea class="form-control" id="approve-order-reason-data" rows="3" placeholder="I need this because..."  readonly></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button id="approve-order-submit" type="button" class="btn btn-primary">Approve Order</button>
+            </div>
+          </div>
+        </div>
+</div>
+
+
+
+<div class="modal fade" id="PlaceOrder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="PlaceOrderlLabel">Place Order</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <div class="input-group" style="margin-bottom:5%;">
+                    <span class="input-group-addon" id="place-order-email">@-Email-ID</span>
+                    <input id="place-order-email-data" type="text" class="form-control" placeholder="Email Address" aria-describedby="basic-addon1" readonly>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group" style="margin-bottom:10px;">
+                    <span class="input-group-addon" id="place-order-itemName"><i class="fa fa-book" aria-hidden="true"></i>-Item</span>
+                    <input id="place-order-itemName-data"  type="text" class="form-control" placeholder="Item Name" aria-describedby="basic-addon1"  readonly>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group" style="margin-bottom:10px;">
+                    <span class="input-group-addon" id="place-order-quantity">#-Quantity</span>
+                    <input id="place-order-quantity-data"   type="text" class="form-control" placeholder="Quantity" aria-describedby="basic-addon1" readonly>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="input-group" style="margin-bottom:10px;">
+                    <span class="input-group-addon" id="place-order-cost">$-Cost</span>
+                    <input id="place-order-cost-data"  type="text" class="form-control" placeholder="Cost" aria-describedby="basic-addon1" readonly>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="reason">Reason:</label>
+                  <textarea class="form-control" id="place-order-reason-data" rows="3" placeholder="I need this because..."  readonly></textarea>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button id="place-order-submit" type="button" class="btn btn-primary">Place Order</button>
+            </div>
+          </div>
+        </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+       <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+       <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+
+      <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script>
+        // This function is used to avoid conflict of different version of jquery
+        var $d = jQuery.noConflict();
+      </script>
+
+       <script type="text/javascript" src="js/view_order.js"></script>
+       <script type="text/javascript" src="js/save_order.js"></script>
+       <script type="text/javascript" src="js/login_order.js"></script>
+       <script type="text/javascript" src="js/order_data_table.js"></script>
+       <script type="text/javascript" src="js/edit_order_data_table.js"></script>
+
+  
+    </body>
+</html>

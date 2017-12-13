@@ -1,0 +1,141 @@
+#login_content {
+    height: 100%;
+    width: auto;
+    align-content: center;
+   	font-family: sans-serif;
+    background: url("homepage_background.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding: 40px 30%;
+    margin: 0;
+}
+
+
+/*Styles form */
+.my_form {
+    position: relative;
+    width: 400px;
+    margin: 0 auto;
+    background: rgba(130,130,130,.3);
+    padding: 20px 22px;
+    border: 1px solid;
+    border-top-color: rgba(255,255,255,.4);
+    border-left-color: rgba(255,255,255,.4);
+    border-bottom-color: rgba(60,60,60,.4);
+    border-right-color: rgba(60,60,60,.4);
+}
+
+/*heading*/
+div#login_content h1 {
+    text-align: center;
+    font-size: 37px;
+    font-weight: bold;
+    color: #06675c;
+    margin-top: 60px;
+}
+.my_form label {
+    position: relative;
+    font-weight: bold;
+    cursor: pointer;
+    padding-left: 25px;
+    font-size: 25px;
+    color: #464646;
+}
+
+.my_form input[type="radio"] {
+    cursor: pointer; 
+    position:absolute;
+}
+
+.my_form input[type="radio"]:checked + label {
+    color: #fcf9f9;
+}
+
+/*Submit and login button*/
+.login-btn {
+    cursor: pointer;
+    padding: 10px 25px;
+    font-size: 25px;
+    letter-spacing: .05em;
+    color: #ffffff;
+    border-radius: 10px;
+    align-content: center;
+}
+
+
+#submit_btn {
+    /*    background-color: #3f898a;*/
+    background-color: brown;
+    width: 90%;
+}
+
+.flex-cont {
+    display: flex;
+}
+
+#login_btn {
+    background-color: #059610;
+    width: 50%;
+}
+
+/*cancle button*/
+#cancle_btn {
+    background-color: #f44336;
+    width: 50%;
+}
+
+
+/*log in page style*/
+.modal-cmxform {
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 24em;
+    width: 90%;
+    background: rgba(130,130,130,.3);
+    padding: 20px 22px;
+    border: 1px solid;
+    border-top-color: rgba(255,255,255,.4);
+    border-left-color: rgba(255,255,255,.4);
+    border-bottom-color: rgba(60,60,60,.4);
+    border-right-color: rgba(60,60,60,.4);
+}
+
+#login_header {
+    background-color: #282830;
+    border-top-left-radius: 0.25em;
+    border-top-right-radius: 0.25em;
+    color: #fff;
+    padding: 1.5em;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 22px;
+}
+
+.login input[type='email'],
+.login input[type='password'] {
+    border: 0.0625em solid #96979a;
+    padding: 1em 1.25em;
+    width: 90%;
+}
+
+.login input[type='email'], .login input[type='password'] {
+    border-top-left-radius: 0.25em;
+    border-top-right-radius: 0.25em;
+}
+
+.btn-delete-order{
+  margin-left: 20px;
+  line-height: 2.0;
+  border-width: thick;
+}
+
+
+.user-logout-btn{
+  background-color: firebrick;
+  color: white;
+  margin-right: 25px;
+  margin-top: -70px;
+}

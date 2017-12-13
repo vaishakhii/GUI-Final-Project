@@ -1,0 +1,80 @@
+@charset "UTF-8";
+
+.jumbotron-dashboard{
+	margin:15px;
+  margin-top: 80px;
+  background-position-y: bottom;
+  background-size: 200px 170px;
+  background-repeat: no-repeat;
+	background-color: white;
+	border: 3px solid;
+	border-width: medium;
+	border-color: firebrick;
+	border-radius: 2.0rem;
+}
+
+.title-dashboard{
+	color: darkgoldenrod;
+}
+
+.dashboard-opt {
+    margin: 30px;
+    padding-top: 30px;
+}
+
+.btn-requested-order{
+	margin-right: 20px;
+	line-height: 2.0;
+	border-width: thick;
+  display: none;
+}
+.btn-approved-order{
+	margin-right: 20px;
+	line-height: 2.0;
+	border-width: thick;
+  display: none;
+}
+.btn-placed-order{
+	margin-right: 20px;
+	line-height: 2.0;
+	border-width: thick;
+  display: none;
+}
+.btn-request-order{
+	line-height: 2.0;
+	border-width: thick;
+  display: none;
+}
+.btn-delete-order-request{
+	margin-left: 20px;
+	line-height: 2.0;
+	border-width: thick;
+  display: none;
+}
+.btn-approve-order-request{
+	margin-left: 20px;
+	line-height: 2.0;
+	border-width: thick;
+  display: none;
+}
+.btn-place-order-request{
+	margin-left: 20px;
+	line-height: 2.0;
+	border-width: thick;
+  display: none;
+}
+
+.order-table {
+  margin: 70px;
+}
+
+#dashboard_content{
+  display: none;
+}
+
+
+#loggedin_user_email{
+  margin-top: 50px;
+  font-size: 30px;
+  margin-left: 25px;
+}
